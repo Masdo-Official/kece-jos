@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /sw.js
 
-Sitemap: https://[YOUR-REAL-DOMAIN]/sitemap.xml
+Sitemap: https://kece-jos.vercel.app/others/sitemap.xml

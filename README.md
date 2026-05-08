@@ -40,7 +40,7 @@ website\
 │   └── sw.js
 ├── page\
 │   ├── 404.html
-│   ├── about.html
+│   ├── developer.html
 │   ├── admin.html
 │   ├── gallery.html
 │   ├── members.html
@@ -1361,9 +1361,9 @@ Dokumentasi ini menyediakan blueprintLength > 2500 baris dengan penjelasan bruta
 
 ---
 
-## BEDAH DETAIL HALAMAN `page/about.html`
+## BEDAH DETAIL HALAMAN `page/developer.html`
 
-File `page/about.html` adalah halaman "Tentang Kami" yang menampilkan informasi wali kelas, visi/misi, prestasi, dan guestbook. Struktur modular, menggunakan data dari `settings.js`.
+File `page/developer.html` adalah halaman "Developer Team" yang menampilkan informasi wali kelas, visi/misi, motto, dan profil developer tim TKJ XI-9 SMK Muhammadiyah Belitang. Struktur modular, menggunakan data dari `settings.js`.
 
 ### Struktur HTML Utama
 

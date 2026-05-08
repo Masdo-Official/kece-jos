@@ -5,9 +5,6 @@
 "use strict";
 
 /* CACHE CONFIGURATION */
-const CACHE_NAME = "tkj-cache-v1";
-const OFFLINE_FALLBACK = "page/offline.html";
-
 /* ================================================================
    MODULE: CANVAS PARTICLE NETWORK BACKGROUND
    ================================================================ */
@@ -142,13 +139,13 @@ function mulaiKanvasJaringan() {
   jalankanAnimasi();
   window.addEventListener("resize", penanganUbahUkuran);
   // Recolor on theme change
-  const observer = new MutationObserver(draw);
+  const observer = new MutationObserver(() => gambarKanvas());
   observer.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
 
-  return { destroy };
+  return { destroy: hentiKanvas };
 }
 
 const KUNCI_PREFERENSI_KANVAS = "tkj-canvas-enabled";
@@ -409,12 +406,6 @@ function mulaiKetikHero() {
   animateTyping(el, text);
 }
 
-function mulaiKetikSubtitle() {
-  document.querySelectorAll("deskripsi-seksi").forEach((el) => {
-    animateTyping(el);
-  });
-}
-
 function mulaiProgresGulir() {
   const bar = document.getElementById("progres-gulir");
   if (!bar) return;
@@ -560,20 +551,6 @@ function mulaiKodeRahasia() {
 })();
 
 /* ================================================================
-   MODULE: TAB BAR ACTIVE STATE
-   ================================================================ */
-(function initTabActive() {
-  const page = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll("tab-item").forEach((tab) => {
-    const tabPage = (tab.getAttribute("href") || "").split("/").pop();
-    if (tabPage === page || (page === "" && tabPage === "index.html")) {
-      tab.classList.add("aktif");
-      tab.setAttribute("aria-current", "page");
-    }
-  });
-})();
-
-/* ================================================================
    MODULE: PAGE PROGRESS BAR
    ================================================================ */
 (function initProgressBar() {
@@ -656,7 +633,7 @@ function enableFocusTrap(wadah) {
   try {
     if (!_isElement(wadah)) return;
   } catch {}
-  _prevActive = document.aktifElement;
+  _prevActive = document.activeElement;
   const focusable = wadah.querySelectorAll(
     'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])',
   );
@@ -677,10 +654,10 @@ function enableFocusTrap(wadah) {
     if (!els.length) return;
     const first = els[0];
     const last = els[els.length - 1];
-    if (e.shiftKey && document.aktifElement === first) {
+    if (e.shiftKey && document.activeElement === first) {
       e.preventDefault();
       last.focus();
-    } else if (!e.shiftKey && document.aktifElement === last) {
+    } else if (!e.shiftKey && document.activeElement === last) {
       e.preventDefault();
       first.focus();
     }
@@ -720,7 +697,7 @@ function createTerminalUI() {
       <div class="term-input"><span class="term-prompt">$</span><input id="term-input" autocomplete="off" placeholder="ketik perintah, mis. home, dark, gallery" /></div>
     </div>`;
   document.body.appendChild(t);
-  t.querySelector("term-tutup")?.addEventListener("click", () =>
+  t.querySelector(".term-tutup")?.addEventListener("click", () =>
     toggleTerminal(false),
   );
   const input = t.querySelector("#term-input");
@@ -854,13 +831,13 @@ function animateCounter(el, target, suffix = "") {
    FIX: Dipanggil HANYA dari initSkillsPage — tidak di DOMContentLoaded
    ================================================================ */
 function initSkillBars() {
-  const section = document.querySelector("skills-list");
+  const section = document.querySelector("#skills-list");
   if (!section) return;
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          section.querySelectorAll("bar-fill").forEach((bar) => {
+          section.querySelectorAll(".bar-fill").forEach((bar) => {
             bar.style.width = (bar.dataset.level || "0") + "%";
           });
           io.unobserve(e.target);
@@ -873,7 +850,7 @@ function initSkillBars() {
 }
 /* Add small 'filled' class when bars animate to show shimmer/dot */
 function markSkillBarsFilled() {
-  document.querySelectorAll("bar-fill").forEach((bar) => {
+  document.querySelectorAll(".bar-fill").forEach((bar) => {
     // add filled slightly after width transition
     setTimeout(() => bar.classList.add("filled"), 700);
   });
@@ -935,7 +912,7 @@ function renderAvatar(wadah, nama, foto, sizeClass = "md") {
    ================================================================ */
 (function initKeyboardShortcuts() {
   document.addEventListener("keydown", (e) => {
-    const tag = document.aktifElement?.tagName?.toLowerCase();
+    const tag = document.activeElement?.tagName?.toLowerCase();
     const isInput = tag === "input" || tag === "textarea" || tag === "select";
     if (e.key === "t" && !isInput && !e.ctrlKey && !e.metaKey)
       document.getElementById("tombol-tema")?.click();
@@ -946,7 +923,7 @@ function renderAvatar(wadah, nama, foto, sizeClass = "md") {
     }
     if (e.key === "Escape" && isInput) {
       const s = document.getElementById("member-search");
-      if (s && document.aktifElement === s) {
+      if (s && document.activeElement === s) {
         s.value = "";
         s.dispatchEvent(new Event("input"));
         s.blur();
@@ -987,7 +964,7 @@ function renderFooterSocial() {
    MODULE: FOOTER YEAR
    ================================================================ */
 (function initFooterYear() {
-  document.querySelectorAll("footer-year").forEach((el) => {
+  document.querySelectorAll(".footer-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
 })();
@@ -1151,7 +1128,7 @@ document.addEventListener("DOMContentLoaded", () => {
   mulaiKodeRahasia();
   // Futuristic niceties
   createMatrixBG();
-  if (page === "about.html") initAboutPage();
+  if (page === "developer.html") initDeveloperPage();
   if (page === "structure.html") initStructurePage();
   if (page === "members.html") initMembersPage();
   if (page === "skills.html") initSkillsPage();
@@ -1372,7 +1349,7 @@ function mulaiMenuHamburger() {
       icon: '<i class="fas fa-house"></i>',
     },
     {
-      href: pagePrefix + "about.html",
+      href: pagePrefix + "developer.html",
       text: "Tentang",
       icon: '<i class="fas fa-circle-info"></i>',
     },
@@ -1417,8 +1394,8 @@ function mulaiMenuHamburger() {
     </div>`;
   document.body.appendChild(menu);
 
-  const panel = menu.querySelector("panel-menu-hamburger");
-  const tutupBtn = menu.querySelector("tutup-menu-hamburger");
+  const panel = menu.querySelector(".panel-menu-hamburger");
+  const tutupBtn = menu.querySelector(".tutup-menu-hamburger");
 
   function terbuka() {
     tombol.setAttribute("aria-expanded", "true");
@@ -1442,7 +1419,7 @@ function mulaiMenuHamburger() {
   panel?.addEventListener("click", (e) => e.stopPropagation());
   tutupBtn?.addEventListener("click", tutup);
 
-  menu.querySelectorAll("tautan-menu-hamburger").forEach((link) => {
+  menu.querySelectorAll(".tautan-menu-hamburger").forEach((link) => {
     link.addEventListener("click", () => {
       tutup();
     });
@@ -1538,7 +1515,7 @@ function tampilkanKontenIndeks() {
 
 function initKenaliKamiIntro() {
   const trigger = document.querySelector(
-    '.hero-cta a[href="./page/about.html"]',
+    '.hero-cta a[href="./page/developer.html"]',
   );
   if (!trigger || document.getElementById("about-intro-modal")) return;
 
@@ -1560,8 +1537,8 @@ function initKenaliKamiIntro() {
     </div>`;
 
   document.body.appendChild(modal);
-  const panel = modal.querySelector("page-modal-panel");
-  const tutupBtn = modal.querySelector("modal-tutup");
+  const panel = modal.querySelector(".panel-modal-halaman");
+  const tutupBtn = modal.querySelector(".tutup-modal");
   const confirmBtn = modal.querySelector("#about-intro-confirm");
   const dismissBtn = modal.querySelector("#about-intro-dismiss");
 
@@ -1660,10 +1637,10 @@ function renderGuruSection() {
 }
 
 /* ================================================================
-   PAGE: about.html
+   PAGE: developer.html
    FIX: Sekarang merender G.prestasi yang sebelumnya tidak pernah dipanggil
    ================================================================ */
-function initAboutPage() {
+function initDeveloperPage() {
   if (typeof G === "undefined") return;
   const visiEl = document.getElementById("visi-text");
   const misiEl = document.getElementById("misi-list");
@@ -1959,7 +1936,10 @@ function initMembersPage() {
   document
     .querySelector(".bungkus-pencarian")
     ?.addEventListener("click", (e) => {
-      if (e.target.closest("#search-clear")) {
+      if (
+        e.target.closest("#hapus-pencarian") ||
+        e.target.closest(".hapus-pencarian")
+      ) {
         if (search) {
           search.value = "";
           search.dispatchEvent(new Event("input"));
@@ -2056,6 +2036,193 @@ function initMembersPage() {
     }
   };
 
+  class AudioPlayer {
+    constructor(container, audioSrc) {
+      this.container =
+        typeof container === "string"
+          ? document.querySelector(container)
+          : container;
+      this.audio = new Audio(audioSrc || "");
+      this.audio.preload = "metadata";
+      this.setupElements();
+      this.attachEventListeners();
+      this.initializeState();
+    }
+
+    setupElements() {
+      this.playBtn = this.container.querySelector(".player-play-btn");
+      this.playIcon = this.container.querySelector(".icon-play");
+      this.pauseIcon = this.container.querySelector(".icon-pause");
+      this.progressInput = this.container.querySelector(
+        ".player-progress-input",
+      );
+      this.progressFill = this.container.querySelector(".player-progress-fill");
+      this.currentTimeEl = this.container.querySelector(".player-current-time");
+      this.durationEl = this.container.querySelector(".player-duration");
+      this.speedBtns = this.container.querySelectorAll(".player-speed-btn");
+      this.trackTitle = this.container.querySelector(".player-track-title");
+      this.trackArtist = this.container.querySelector(".player-track-artist");
+    }
+
+    attachEventListeners() {
+      this.playBtn.addEventListener("click", () => this.togglePlayPause());
+      this.progressInput.addEventListener("input", (e) => {
+        const duration = this.audio.duration || 0;
+        const newTime = (e.target.value / 100) * duration;
+        this.audio.currentTime = newTime;
+      });
+      this.audio.addEventListener("play", () => this.updatePlayIcon());
+      this.audio.addEventListener("pause", () => this.updatePlayIcon());
+      this.audio.addEventListener("timeupdate", () => this.updateProgress());
+      this.audio.addEventListener("loadedmetadata", () =>
+        this.updateDuration(),
+      );
+      this.speedBtns.forEach((btn) => {
+        btn.addEventListener("click", () =>
+          this.setSpeed(btn.dataset.speed, btn),
+        );
+      });
+    }
+
+    initializeState() {
+      this.updatePlayIcon();
+      this.setActiveSpeedBtn(1);
+    }
+
+    togglePlayPause() {
+      if (!this.audio.src) {
+        if (typeof showNotification === "function") {
+          showNotification("🎵 Audio belum tersedia");
+        }
+        return;
+      }
+      if (this.audio.paused) {
+        this.audio.play();
+      } else {
+        this.audio.pause();
+      }
+    }
+
+    updatePlayIcon() {
+      if (this.audio.paused) {
+        this.playIcon.style.display = "block";
+        this.pauseIcon.style.display = "none";
+      } else {
+        this.playIcon.style.display = "none";
+        this.pauseIcon.style.display = "block";
+      }
+    }
+
+    updateProgress() {
+      if (!this.audio.duration) return;
+      const percentage = (this.audio.currentTime / this.audio.duration) * 100;
+      this.progressFill.style.width = `${percentage}%`;
+      this.progressInput.value = percentage;
+      this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
+    }
+
+    updateDuration() {
+      if (!this.audio.duration || isNaN(this.audio.duration)) {
+        this.durationEl.textContent = "0:00";
+        return;
+      }
+      this.durationEl.textContent = this.formatTime(this.audio.duration);
+    }
+
+    setSpeed(speed, btn) {
+      this.audio.playbackRate = parseFloat(speed);
+      this.setActiveSpeedBtn(parseFloat(speed), btn);
+    }
+
+    setActiveSpeedBtn(speed, btn = null) {
+      this.speedBtns.forEach((button) => {
+        button.classList.remove("active");
+        if (parseFloat(button.dataset.speed) === speed) {
+          button.classList.add("active");
+        }
+      });
+    }
+
+    formatTime(seconds) {
+      if (!seconds || isNaN(seconds)) return "0:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    setTrackInfo(title, artist, artworkUrl) {
+      if (this.trackTitle) this.trackTitle.textContent = title;
+      if (this.trackArtist) {
+        this.trackArtist.textContent = artist;
+        this.setupArtistText(artist);
+      }
+      const artworkImg = this.container.querySelector(".player-artwork img");
+      if (artworkImg) artworkImg.src = artworkUrl;
+    }
+
+    setupArtistText(artist) {
+      if (!this.trackArtist) return;
+
+      // Remove existing event listener first
+      if (this.trackArtist._readMoreHandler) {
+        this.trackArtist.removeEventListener(
+          "click",
+          this.trackArtist._readMoreHandler,
+        );
+      }
+
+      // Check if text is long enough to need truncation
+      const maxLength = 100; // Adjust as needed
+      if (artist.length <= maxLength) {
+        this.trackArtist.classList.remove("expanded");
+        this.trackArtist.textContent = artist;
+        return;
+      }
+
+      // Truncate text and add read more button
+      const truncatedText = artist.substring(0, maxLength) + "...";
+      this.trackArtist.innerHTML =
+        truncatedText + ' <span class="player-read-more">selengkapnya</span>';
+      this.trackArtist.classList.remove("expanded");
+
+      // Create event handler
+      this.trackArtist._readMoreHandler = (e) => {
+        if (e.target.classList.contains("player-read-more")) {
+          e.stopPropagation();
+          if (this.trackArtist.classList.contains("expanded")) {
+            // Collapse
+            this.trackArtist.innerHTML =
+              truncatedText +
+              ' <span class="player-read-more">selengkapnya</span>';
+            this.trackArtist.classList.remove("expanded");
+          } else {
+            // Expand
+            this.trackArtist.innerHTML =
+              artist + ' <span class="player-read-more">lebih sedikit</span>';
+            this.trackArtist.classList.add("expanded");
+          }
+        }
+      };
+
+      // Attach event listener
+      this.trackArtist.addEventListener(
+        "click",
+        this.trackArtist._readMoreHandler,
+      );
+    }
+
+    setAudioSource(src) {
+      this.audio.src = src || "";
+      this.progressFill.style.width = "0%";
+      this.progressInput.value = 0;
+      this.currentTimeEl.textContent = "0:00";
+      if (src) {
+        this.audio.load();
+      }
+      this.updatePlayIcon();
+    }
+  }
+
   grid?.addEventListener("click", (e) => {
     const card = e.target.closest(".member-card");
     if (!card) return;
@@ -2079,149 +2246,81 @@ function initMembersPage() {
         modalSocial.appendChild(a);
       });
     }
-    // Audio button - WhatsApp voice note style with full controls
-    modalAudio.innerHTML = "";
-    const audioPlayer = document.createElement("div");
-    audioPlayer.className = "whatsapp-audio-player";
 
-    // Create audio element
-    const audio = new Audio();
-    audio.preload = "metadata";
+    modalAudio.innerHTML = `
+      <div class="audio-player">
+        <div class="player-track-info">
+          <div class="player-artwork">
+            <img src="${URLValidator.sanitize(data.fotoAudio || data.foto || "../assets/logo/logo-utama.svg")}" alt="Artwork ${data.namaAudio || data.nama || "Audio"}" />
+          </div>
+          <div class="player-details">
+            <h3 class="player-track-title">${data.namaAudio || data.nama || "Track Name"}</h3>
+            <p class="player-track-artist">${data.descAudio || data.desc || (data.nis ? `NIS ${data.nis}` : "Anggota Kelas")}</p>
+          </div>
+        </div>
 
-    // Create player UI
-    audioPlayer.innerHTML = `
-      <div class="audio-controls">
-        <button class="audio-play-btn" aria-label="Play/Pause">
-          <span class="play-icon">▶</span>
-        </button>
-        <div class="audio-waveform">
-          <span></span><span></span><span></span><span></span><span></span>
+        <div class="player-progress-section">
+          <div class="player-progress-bar">
+            <div class="player-progress-fill"></div>
+            <input
+              type="range"
+              class="player-progress-input"
+              min="0"
+              max="100"
+              value="0"
+            />
+          </div>
+          <div class="player-time">
+            <span class="player-current-time">0:00</span>
+            <span class="player-duration">0:00</span>
+          </div>
         </div>
-        <div class="audio-info">
-          <div class="audio-duration">0:00 / 0:00</div>
-          <div class="audio-speed">1x</div>
+
+        <div class="player-controls">
+          <button class="player-btn player-play-btn" aria-label="Play/Pause" type="button">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+          </button>
+
+          <div class="player-speed-controls">
+            <button class="player-speed-btn" data-speed="0.75" type="button">0.75x</button>
+            <button class="player-speed-btn active" data-speed="1" type="button">1x</button>
+            <button class="player-speed-btn" data-speed="1.25" type="button">1.25x</button>
+            <button class="player-speed-btn" data-speed="1.5" type="button">1.5x</button>
+          </div>
         </div>
-      </div>
-      <div class="audio-progress">
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-      </div>
-      <div class="audio-speed-controls">
-        <button class="speed-btn" data-speed="0.5">0.5x</button>
-        <button class="speed-btn active" data-speed="1">1x</button>
-        <button class="speed-btn" data-speed="1.5">1.5x</button>
-        <button class="speed-btn" data-speed="2">2x</button>
       </div>
     `;
 
-    const playBtn = audioPlayer.querySelector(".audio-play-btn");
-    const playIcon = audioPlayer.querySelector(".play-icon");
-    const waveform = audioPlayer.querySelector(".audio-waveform");
-    const durationEl = audioPlayer.querySelector(".audio-duration");
-    const speedEl = audioPlayer.querySelector(".audio-speed");
-    const progressBar = audioPlayer.querySelector(".progress-bar");
-    const progressFill = audioPlayer.querySelector(".progress-fill");
-    const speedBtns = audioPlayer.querySelectorAll(".speed-btn");
+    const audioPlayerEl = modalAudio.querySelector(".audio-player");
+    const memberAudio = new AudioPlayer(audioPlayerEl, data.audio || "");
+    memberAudio.setTrackInfo(
+      data.namaAudio || data.nama || "Audio Anggota",
+      data.descAudio ||
+        data.desc ||
+        (data.nis ? `NIS ${data.nis}` : "Anggota Kelas"),
+      URLValidator.sanitize(
+        data.fotoAudio || data.foto || "../assets/logo/logo-utama.svg",
+      ),
+    );
 
-    let isPlaying = false;
-    let currentSpeed = 1;
-
-    // Format time helper
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, "0")}`;
-    }
-
-    // Update progress bar
-    function updateProgress() {
-      if (audio.duration) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = `${progress}%`;
-        durationEl.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    if (!data.audio) {
+      const playButton = audioPlayerEl.querySelector(".player-play-btn");
+      if (playButton) {
+        playButton.setAttribute("aria-disabled", "true");
       }
     }
 
-    // Toggle play/pause
-    function togglePlay() {
-      if (isPlaying) {
-        audio.pause();
-        isPlaying = false;
-        playIcon.textContent = "▶";
-        audioPlayer.classList.remove("playing");
-        showNotification(`⏸️ Audio ${data.nama} dijeda`);
-      } else {
-        audio.play();
-        isPlaying = true;
-        playIcon.textContent = "⏸";
-        audioPlayer.classList.add("playing");
-        showNotification(`▶️ Memutar audio ${data.nama}`);
-      }
-    }
-
-    // Speed control
-    speedBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const speed = parseFloat(btn.dataset.speed);
-        currentSpeed = speed;
-        audio.playbackRate = speed;
-
-        // Update active button
-        speedBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        speedEl.textContent = `${speed}x`;
-        showNotification(`Kecepatan audio: ${speed}x`);
-      });
-    });
-
-    // Progress bar click
-    progressBar.addEventListener("click", (e) => {
-      const rect = progressBar.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const percentage = clickX / rect.width;
-      audio.currentTime = percentage * audio.duration;
-    });
-
-    // Audio events
-    audio.addEventListener("loadedmetadata", () => {
-      durationEl.textContent = `0:00 / ${formatTime(audio.duration)}`;
-    });
-
-    audio.addEventListener("timeupdate", updateProgress);
-
-    audio.addEventListener("ended", () => {
-      isPlaying = false;
-      playIcon.textContent = "▶";
-      audioPlayer.classList.remove("playing");
-      audio.currentTime = 0;
-      showNotification(`🎵 Audio ${data.nama} selesai`);
-    });
-
-    // Play button click
-    playBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (data.audio) {
-        if (!audio.src) {
-          audio.src = data.audio;
-        }
-        togglePlay();
-      } else {
-        showNotification(`🎵 Audio ${data.nama} belum tersedia`);
-      }
-    });
-
-    modalAudio.appendChild(audioPlayer);
     renderAvatar(
       modalAvatar,
       data.nama || "",
       URLValidator.sanitize(data.foto || ""),
       "lg",
     );
-    // Set photo URL for.jendela-gambar
     currentMemberPhotoUrl = URLValidator.sanitize(data.foto || "");
     updateAvatarStyle();
     modal.classList.add("terbuka");
@@ -2461,8 +2560,8 @@ function initGalleryPage() {
     }
 
     // controls
-    let prevBtn = parent.querySelector("stack-prev");
-    let nextBtn = parent.querySelector("stack-next");
+    let prevBtn = parent.querySelector(".stack-prev");
+    let nextBtn = parent.querySelector(".stack-next");
     if (!prevBtn) {
       prevBtn = document.createElement("button");
       prevBtn.className = "stack-prev";

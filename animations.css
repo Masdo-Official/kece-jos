@@ -208,10 +208,6 @@
   }
 }
 
-body.no-bottom-tab .tab-bar {
-  display: none !important;
-}
-
 /* ================================================================
    ORG CARDS - Optimized Snake Border Animation
    ================================================================ */

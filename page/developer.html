@@ -1,0 +1,1582 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+             script-src 'self' 'unsafe-inline';
+             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+             font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+             img-src 'self' data: blob: *;
+             media-src 'self' data: blob: *;
+             connect-src 'self';"
+    />
+
+    <title>Perjalanan Developer | Masdo Officials</title>
+    <meta
+      name="description"
+      content="Perjalanan developer Masdo Officials dari SMK sampai dunia proyek, AI, dan filosofi belajar. Kisah nyata tentang usaha, tantangan, dan aspirasi masa depan."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="./developer.html" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Perjalanan Developer | Masdo Officials"
+    />
+    <meta
+      property="og:description"
+      content="Perjalanan developer Masdo Officials: dari WhatsApp Bot hingga filosofi belajar AI, tantangan, dan cita-cita masa depan."
+    />
+    <meta
+      property="og:image"
+      content="https://picsum.photos/seed/tkj-xi9-developer/1200/630"
+    />
+    <meta property="og:url" content="./developer.html" />
+
+    <link rel="manifest" href="../others/manifest.json" />
+    <meta name="theme-color" content="#0f0a0a" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b91c1c'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='700' font-size='13' fill='white'>TKJ</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Rajdhani:wght@500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Rajdhani:wght@500;700&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Rajdhani:wght@500;700&display=swap"
+    /></noscript>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../animations.css" />
+    <style>
+      /* ============================================
+         DEVELOPER PAGE — MODERNIZED STYLES
+         ============================================ */
+
+      /* Developer Tabs - Modernized */
+      .developer-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        margin: 3rem 0;
+        padding: 1rem;
+        background: rgba(15, 10, 10, 0.72);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+      }
+
+      .dev-tab {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 0.9rem 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 110px;
+        position: relative;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      .dev-tab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.12);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .dev-tab::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.03);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+
+      .dev-tab:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .dev-tab:hover::after {
+        opacity: 0.5;
+      }
+
+      .dev-tab.active {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .dev-tab.active::before {
+        transform: scaleX(1);
+      }
+
+      .dev-tab-icon {
+        font-size: 1.5rem;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+        display: block;
+        line-height: 1;
+      }
+
+      .dev-tab:hover .dev-tab-icon {
+        transform: scale(1.08);
+      }
+
+      .dev-tab.active .dev-tab-icon {
+        color: var(--accent-2);
+      }
+
+      .dev-tab-title {
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--text-2);
+        transition: color 0.25s ease;
+        letter-spacing: 0.3px;
+      }
+
+      .dev-tab:hover .dev-tab-title {
+        color: var(--accent);
+      }
+
+      .dev-tab.active .dev-tab-title {
+        color: var(--text-1);
+      }
+
+      /* Developer Content */
+      .developer-content {
+        margin-top: 2.5rem;
+        position: relative;
+        min-height: auto;
+      }
+
+      .dev-content-item {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .dev-content-item.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        height: auto;
+        pointer-events: auto;
+      }
+
+      .dev-content-card {
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 2rem;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .dev-content-card::before {
+        content: "";
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.06),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .dev-content-card::after {
+        display: none;
+      }
+
+      .dev-content-icon {
+        font-size: 2.3rem;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        position: relative;
+        z-index: 1;
+      }
+
+      .dev-content-title {
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: var(--text-1);
+        margin-bottom: 0.35rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-subtitle {
+        margin: 0 0 1.4rem;
+        color: var(--text-2);
+        font-style: italic;
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 720px;
+      }
+
+      .article-photo {
+        margin: 0 0 1.5rem;
+        text-align: center;
+      }
+
+      .article-photo img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .article-photo img:hover {
+        transform: scale(1.02);
+      }
+
+      .article-photo figcaption {
+        margin-top: 0.75rem;
+        color: var(--text-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        font-style: italic;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Photo Lightbox */
+      .photo-lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .photo-lightbox.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .photo-lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .photo-lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+      }
+
+      .photo-lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .dev-content-desc {
+        color: var(--text-2);
+        line-height: 1.9;
+        max-width: 720px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        font-size: 1rem;
+      }
+
+      .dev-content-item[data-content="philosophy"] .dev-content-desc,
+      .dev-content-item[data-content="goals"] .dev-content-desc {
+        text-align: left;
+        max-width: 100%;
+      }
+
+      .dev-content-item[data-content="philosophy"] p,
+      .dev-content-item[data-content="goals"] p {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .developer-tabs {
+          gap: 0.5rem;
+          padding: 1rem;
+          margin: 2rem 0;
+        }
+
+        .dev-tab {
+          min-width: 95px;
+          padding: 0.75rem 0.875rem;
+        }
+
+        .dev-tab-icon {
+          font-size: 1.5rem;
+          margin-bottom: 0.3rem;
+        }
+
+        .dev-tab-title {
+          font-size: 0.75rem;
+        }
+
+        .dev-content-card {
+          padding: 1.75rem;
+        }
+
+        .dev-content-icon {
+          width: 70px;
+          height: 70px;
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .dev-content-title {
+          font-size: 1.5rem;
+        }
+
+        .developer-content {
+          min-height: 350px;
+        }
+
+        .article-photo img {
+          max-width: 300px;
+        }
+
+        .article-photo figcaption {
+          font-size: 0.85rem;
+          max-width: 300px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .developer-tabs {
+          gap: 0.4rem;
+          padding: 0.75rem;
+        }
+
+        .dev-tab {
+          min-width: 85px;
+          padding: 0.6rem 0.75rem;
+        }
+
+        .dev-tab-icon {
+          font-size: 1.3rem;
+          margin-bottom: 0.2rem;
+        }
+
+        .dev-tab-title {
+          font-size: 0.65rem;
+        }
+
+        .dev-content-card {
+          padding: 1.25rem;
+        }
+
+        .dev-content-desc {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Animations */
+
+      @keyframes slide-in {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Accessibility */
+      .dev-tab:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .dev-content-item.active .dev-content-card {
+        animation: slide-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Stats Section */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+        padding: 1.75rem;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 1.4rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card:hover {
+        transform: none;
+        border-color: rgba(255, 255, 255, 0.14);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .stat-number {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--text-1);
+        margin-bottom: 0.5rem;
+        font-family: "Rajdhani", sans-serif;
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: var(--text-2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+
+      /* Enhanced Scrolling & Global Effects */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Loading skeleton animation */
+      /* Tab focus state improvement */
+      .dev-tab:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
+
+      /* Smooth transitions for all interactive elements */
+      button,
+      a,
+      .dev-tab,
+      .tech-tag,
+      .stat-card,
+      .highlight-item {
+        transition: all var(--trans);
+      }
+
+      /* Enhanced mobile touch */
+      @media (hover: none) and (pointer: coarse) {
+        .dev-tab,
+        .tech-tag,
+        .stat-card,
+        .highlight-item {
+          transition: all 0.25s ease;
+        }
+
+        .dev-tab:active,
+        .tech-tag:active,
+        .stat-card:active,
+        .highlight-item:active {
+          transform: scale(0.98);
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        .developer-tabs,
+        .stats-grid {
+          page-break-inside: avoid;
+        }
+
+        .dev-content-card {
+          page-break-inside: avoid;
+        }
+      }
+
+      /* Dark mode enhancements */
+      [data-theme="dark"] {
+        --text-secondary: var(--text-2);
+        --card-bg: var(--surface);
+        --bg-secondary: var(--bg-3);
+      }
+
+      /* Light mode overrides */
+      [data-theme="light"] {
+        --text-secondary: var(--text-2);
+        --card-bg: var(--surface);
+        --bg-secondary: var(--bg-3);
+      }
+
+      /* Prefers reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* Better link focus */
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated network background -->
+    <canvas id="kanvas-jaringan"></canvas>
+
+    <!-- Background Audio Player (Persistent across pages) -->
+    <iframe
+      id="bingkai-audio"
+      src="../audio-player.html"
+      style="display: none"
+      aria-hidden="true"
+      allow="autoplay"
+    ></iframe>
+
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+    <div id="progres-halaman" aria-hidden="true"></div>
+
+    <header class="bilah-atas" role="banner">
+      <div class="brand-bilah-atas">
+        <a href="../index.html" aria-label="TKJ XI-9 — Beranda">
+          <img
+            id="brand-logo"
+            src="../assets/logo/logo-utama.svg"
+            alt="Logo TKJ XI-9"
+            class="brand-badge brand-logo"
+            role="button"
+            tabindex="0"
+            aria-label="Klik untuk memperbesar logo"
+          />
+          <div>
+            <div class="brand-name">Masdo Officials</div>
+            <div class="brand-year mono">2025/2026</div>
+          </div>
+        </a>
+      </div>
+      <div class="aksi-bilah-atas">
+        <!-- Theme toggle & hamburger will be placed here by JS -->
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="jejak-navigasi" aria-label="Breadcrumb">
+      <a href="../index.html"
+        ><i class="fas fa-house" aria-hidden="true"></i> Beranda</a
+      >
+      <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      <span class="bc-current" aria-current="page">Tentang</span>
+    </nav>
+
+    <main class="page wadah" id="main-content">
+      <div class="sec-head">
+        <div class="sec-tag">DEVELOPER</div>
+        <h1 class="sec-title">Perjalanan Developer</h1>
+        <p class="deskripsi-seksi" id="kelas-desc"></p>
+      </div>
+
+      <!-- Wali Kelas -->
+      <div
+        class="wali-card reveal"
+        id="wali-card"
+        style="--d: 0s"
+        aria-label="Profil Wali Kelas"
+      >
+        <div class="avatar lg avatar-ring" aria-hidden="true"></div>
+        <div class="wali-info">
+          <h3 class="wali-name">—</h3>
+          <p class="wali-pos mono">Wali Kelas XI-9 TKJ</p>
+        </div>
+      </div>
+
+      <div
+        class="developer-tabs"
+        role="tablist"
+        aria-label="Navigasi cerita developer"
+      >
+        <div
+          id="tab-origin"
+          class="dev-tab active"
+          data-tab="origin"
+          role="tab"
+          aria-selected="true"
+          tabindex="0"
+        >
+          <i class="fas fa-book dev-tab-icon"></i>
+          <span class="dev-tab-title">Asal Saya</span>
+        </div>
+        <div
+          id="tab-ai_learning"
+          class="dev-tab"
+          data-tab="ai_learning"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-robot dev-tab-icon"></i>
+          <span class="dev-tab-title">AI & Belajar</span>
+        </div>
+        <div
+          id="tab-philosophy"
+          class="dev-tab"
+          data-tab="philosophy"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-lightbulb dev-tab-icon"></i>
+          <span class="dev-tab-title">Filosofi</span>
+        </div>
+        <div
+          id="tab-challenges"
+          class="dev-tab"
+          data-tab="challenges"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-fire dev-tab-icon"></i>
+          <span class="dev-tab-title">Tantangan</span>
+        </div>
+        <div
+          id="tab-inspiration"
+          class="dev-tab"
+          data-tab="inspiration"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-heart dev-tab-icon"></i>
+          <span class="dev-tab-title">Inspirasi</span>
+        </div>
+        <div
+          id="tab-goals"
+          class="dev-tab"
+          data-tab="goals"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-rocket dev-tab-icon"></i>
+          <span class="dev-tab-title">Tujuan</span>
+        </div>
+        <div
+          id="tab-journey_philosophy"
+          class="dev-tab"
+          data-tab="journey_philosophy"
+          role="tab"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          <i class="fas fa-compass dev-tab-icon"></i>
+          <span class="dev-tab-title">Perjalanan & Filosofi</span>
+        </div>
+      </div>
+
+      <div class="developer-content">
+        <div
+          class="dev-content-item active"
+          data-content="origin"
+          role="tabpanel"
+          aria-labelledby="tab-origin"
+          aria-hidden="false"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h2 class="dev-content-title">Asal Saya</h2>
+            <p class="section-subtitle">
+              Jejak pertama dari keraguan menuju rasa penasaran.
+            </p>
+            <figure class="article-photo">
+              <img
+                src="../assets/profil/profil-alfredo.webp"
+                alt="Potret developer saat fokus dengan kode"
+                loading="lazy"
+              />
+              <figcaption>
+                Momen ketika kode mulai bermakna — dari teks acak menjadi bahasa
+                yang hidup.
+              </figcaption>
+            </figure>
+            <div class="dev-content-desc">
+              <p>
+                Di SMP, kode bagi saya hanyalah teks acak yang tidak berguna.
+                Saya melihat layar komputer seperti kumpulan simbol yang rumit,
+                tanpa tahu mengapa orang-orang bisa begitu antusias dengan dunia
+                digital.
+              </p>
+              <p>
+                Semua berubah setelah saya masuk SMK. Saya mulai melihat
+                teknologi sebagai bahasa yang bisa dimaknai, bukan sekadar teks.
+                Ketertarikan itu tumbuh ketika saya menemukan WhatsApp Bot
+                Baileys.
+              </p>
+              <p>
+                Saat pertama kali mencoba, saya tidak langsung membuat semuanya
+                dari nol. Saya memulai dari project milik orang lain,
+                mempelajari logika yang ada, lalu mengembangkannya sendiri. Hari
+                demi hari saya belajar struktur file, modularitas, dan perbedaan
+                antara CommonJS dan ESM.
+              </p>
+              <p>
+                Ada satu fase yang selalu saya ingat: saya begadang berkali-kali
+                hanya untuk membuat satu fitur baru di bot saya. Itu bukan
+                sekadar ngoding. Itu adalah proses memahami bagaimana suatu
+                perintah bisa dijalankan oleh mesin, bagaimana event dapat
+                diproses dengan benar, dan bagaimana hasilnya bisa tercipta
+                persis seperti yang saya bayangkan.
+              </p>
+              <p>
+                Saya belajar bahwa perjalanan menjadi developer tidak selalu
+                dimulai dari garis nol. Malah, dalam banyak kasus saya berdiri
+                di pundak orang lain: mengambil project open source, mempelajari
+                pola, lalu membuatnya lebih kaya dan lebih advance.
+              </p>
+              <p>
+                Ironisnya, saya pernah minder karena selalu menggunakan karya
+                orang lain dan AI sebagai bagian dari proses. Namun pada
+                akhirnya saya sadar, nilai sebenarnya bukan terletak pada siapa
+                yang menciptakan kode pertama kali, melainkan bagaimana saya
+                memahami, mengembangkan, dan memperbaiki kode itu hingga menjadi
+                sesuatu yang lebih baik.
+              </p>
+              <p>
+                Itu adalah titik balik terbesar dalam perjalanan saya: dari
+                melihat kode sebagai teks acak menjadi bahasa yang penuh logika,
+                fungsi, dan kreativitas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="ai_learning"
+          role="tabpanel"
+          aria-labelledby="tab-ai_learning"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h2 class="dev-content-title">AI & Pembelajaran</h2>
+            <p class="section-subtitle">
+              Catatan ketika AI menjadi cermin dan guru.
+            </p>
+            <div class="dev-content-desc">
+              <p>
+                Frontend, backend, UI/UX — semua menarik bagi saya. Namun
+                realitasnya, saya belum menguasai semuanya sendirian. Saya
+                selalu menggunakan AI sebagai partner untuk bekerja, menulis,
+                dan mempelajari kode.
+              </p>
+              <p>
+                Awalnya, itu terasa seperti beban moral. Saya bertanya pada diri
+                sendiri: apakah ini masih pengembangan yang asli? Apakah saya
+                benar-benar seorang pengembang jika saya bergantung pada AI?
+              </p>
+              <p>
+                Tetapi saya kemudian menemukan cara yang lebih bijak: saya tidak
+                meminta AI untuk bekerja tanpa berpikir. Saya meminta AI untuk
+                menjelaskan, untuk menjabarkan pilihan, untuk menguji asumsi
+                saya.
+              </p>
+              <p>
+                Contohnya, ketika saya membangun bot WhatsApp, saya tidak hanya
+                berkata, “Buat kode ini.” Saya bertanya, “Mengapa logika ini
+                bekerja seperti ini?” dan “Apa kekurangan pendekatan ini?”.
+                Itulah strategi yang membuat saya berkembang lebih cepat.
+              </p>
+              <p>
+                AI bagi saya bukanlah mesin penulis kode otomatis. AI adalah
+                alat pembelajaran. AI bisa membuat Anda lebih pintar jika Anda
+                menggunakannya sebagai guru. Tapi AI juga bisa membuat Anda
+                bodoh kalau Anda hanya copy-paste tanpa memahami.
+              </p>
+              <p>
+                Jadi filosofi saya sederhana: gunakan AI untuk mempercepat
+                kerja, tetapi jangan pernah menyerah pada proses belajar. Hanya
+                dengan begitu, AI menjadi kekuatan, bukan beban.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="philosophy"
+          role="tabpanel"
+          aria-labelledby="tab-philosophy"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h2 class="dev-content-title">Filosofi</h2>
+            <p class="section-subtitle">
+              Renungan tentang cara bekerja dan hidup.
+            </p>
+            <div class="dev-content-desc">
+              <h3>Kesabaran Sebagai Kunci</h3>
+              <p>
+                Saya percaya: tidak ada proyek besar yang selesai dalam satu
+                hari, kecuali Anda miliarder yang bisa membeli semua bantuan.
+                Harapan untuk selesai cepat hanya akan membuat kita frustasi.
+              </p>
+              <h3>Kerangka Dulu, UI Belakangan</h3>
+              <p>
+                Struktur aplikasi adalah pondasi. UI dan desain memang penting,
+                tetapi tanpa kerangka yang jelas, tampilan indah hanyalah skin
+                tanpa tulang.
+              </p>
+              <h3>AI Harus Dijadikan Guru</h3>
+              <p>
+                Jangan cuma memerintahkan AI. Minta AI untuk menjelaskan. Minta
+                AI untuk membandingkan dua solusi. Dengan begitu, Anda belajar
+                lebih dari sekadar mendapatkan kode.
+              </p>
+              <h3>Istirahat Bukan Melemah</h3>
+              <p>
+                Jika stuck, keluar sebentar, beli kopi, dan kembali dengan
+                kepala dingin. Saya sering menemukan solusi terbaik setelah
+                memberi jarak pada masalah.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="challenges"
+          role="tabpanel"
+          aria-labelledby="tab-challenges"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h2 class="dev-content-title">Tantangan</h2>
+            <p class="section-subtitle">
+              Pergulatan batin yang lebih berat dari kode.
+            </p>
+            <div class="dev-content-desc">
+              <p>
+                Tantangan terbesar saya bukanlah error di terminal. Tantangan
+                terbesar saya adalah rasa minder dan imposter syndrome.
+              </p>
+              <p>
+                Saya pernah merasa tidak layak menyebut diri sebagai pengembang
+                karena sering memulai dari karya orang lain dan karena AI selalu
+                membantu. Saya merasa itu membuat saya tidak “otentik”.
+              </p>
+              <p>
+                Perasaan itu berat. Tetapi saya belajar bahwa perjalanan tiap
+                orang berbeda. Memulai dari adaptasi project lain adalah bagian
+                normal dari proses belajar.
+              </p>
+              <p>
+                Ketika saya menghadapi bug kompleks pada bot WhatsApp, saya
+                tidak langsung menyerah. Saya berhenti, mengevaluasi ulang,
+                memecah masalah menjadi bagian kecil, dan kembali. Itu bukan
+                sekadar teknik. Itu cara berpikir yang terlatih.
+              </p>
+              <p>
+                Saya belajar bahwa kegagalan bukan tanda kelemahan. Kegagalan
+                adalah informasi. Dengan memahami apa yang gagal, kita bisa
+                memperbaiki lebih cepat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="inspiration"
+          role="tabpanel"
+          aria-labelledby="tab-inspiration"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="dev-content-title">Inspirasi</h2>
+            <p class="section-subtitle">
+              Orang-orang dan gagasan yang menyalakan langkah.
+            </p>
+            <div class="dev-content-desc">
+              <h3>Bibi dengan Impian Jepang</h3>
+              <p>
+                Bibi saya adalah inspirasi besar. Dari latar keluarga sederhana,
+                dia berhasil mengejar mimpi besar dan bekerja di Jepang. Itu
+                mengajarkan saya bahwa latar belakang tidak menentukan batas
+                akhir; tekad lah yang menentukan.
+              </p>
+              <h3>Guru yang Tak Pernah Menyerah</h3>
+              <p>
+                Di SMK, ada guru yang mengajarkan saya arti konsistensi. Beliau
+                mengajar dari pagi sampai malam, tanpa mengeluh. Sikap itu
+                menginspirasi saya untuk terus berusaha, walau capek dan stuck.
+              </p>
+              <h3>Belajar dari Napoleon</h3>
+              <p>
+                Napoleon Bonaparte mengajari saya satu hal penting: ambisi besar
+                tidak selalu mulus, tetapi ambisi yang realistis dan terus
+                dilanjutkan akan menjadi cerita yang layak dikenang.
+                Keberhasilan atau kegagalan, keduanya bisa menginspirasi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="goals"
+          role="tabpanel"
+          aria-labelledby="tab-goals"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h2 class="dev-content-title">Masa Depan</h2>
+            <p class="section-subtitle">
+              Rencana panjang yang berjarak namun jelas.
+            </p>
+            <div class="dev-content-desc">
+              <h3>Jangka Pendek</h3>
+              <ul style="text-align: left; display: inline-block">
+                <li>
+                  Menyelesaikan SMK dengan hasil terbaik dan mendapatkan
+                  portofolio yang solid.
+                </li>
+                <li>
+                  Membangun personal website yang bukan hanya menunjukkan
+                  project, tetapi juga cerita perjalanan.
+                </li>
+                <li>
+                  Mengumpulkan minimal 5 project meaningful yang menunjukkan
+                  perkembangan skill.
+                </li>
+              </ul>
+              <h3>Jangka Menengah</h3>
+              <ul style="text-align: left; display: inline-block">
+                <li>Melanjutkan studi programming ke Jerman.</li>
+                <li>
+                  Menguasai ekosistem JavaScript yang lebih dalam, termasuk
+                  React, Next.js, dan backend scalable.
+                </li>
+                <li>
+                  Menjadi contributor aktif di open source yang berdampak.
+                </li>
+              </ul>
+              <h3>Jangka Panjang</h3>
+              <ul style="text-align: left; display: inline-block">
+                <li>
+                  Menjadi pengembang profesional dengan standar internasional.
+                </li>
+                <li>
+                  Membangun jaringan global yang kuat dalam dunia teknologi.
+                </li>
+                <li>
+                  Menciptakan track record yang bisa menginspirasi para junior
+                  developer.
+                </li>
+                <li>Berkontribusi pada ekosistem teknologi lokal Indonesia.</li>
+              </ul>
+              <p
+                style="
+                  margin-top: 1.5rem;
+                  font-style: italic;
+                  color: var(--accent-2);
+                "
+              >
+                Semua ini bukan mimpi yang mustahil. Ini adalah rencana yang
+                dibangun dari konsistensi, disiplin, dan langkah demi langkah
+                yang terarah.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dev-content-item"
+          data-content="journey_philosophy"
+          role="tabpanel"
+          aria-labelledby="tab-journey_philosophy"
+          aria-hidden="true"
+        >
+          <div class="dev-content-card">
+            <div class="dev-content-icon">
+              <i class="fas fa-compass"></i>
+            </div>
+            <h2 class="dev-content-title">Perjalanan & Filosofi</h2>
+            <p class="section-subtitle">
+              Rangkaian cerpen harian: dari kebingungan menuju pemahaman.
+            </p>
+            <div class="dev-content-desc">
+              <p>
+                Enam catatan panjang ini adalah rangkaian cerpen harian saya: dari
+                mulai kebingungan sampai menemukan cara berjalan di dunia pemrograman.
+                Setiap poin ditulis dengan jujur, lugas, dan penuh refleksi.
+              </p>
+              <div class="highlights-list">
+                <article class="highlight-item">
+                  <h3 class="highlight-title">1. Awal yang Mengejutkan</h3>
+                  <p>
+                    Saya tidak menduga bahwa sesuatu yang dulu hanya terlihat seperti
+                    teks acak bisa berubah menjadi jalan hidup. Di SMP, kode terasa
+                    asing dan tidak berguna. Saat masuk SMK, saya berjumpa dengan
+                    WhatsApp Bot Baileys, dan pada saat itu pandangan saya terhadap
+                    digital berubah.
+                  </p>
+                  <p>
+                    Dari belajar satu perintah, saya kemudian mempelajari alur logika.
+                    Saya mulai mengerti bahwa kode adalah bahasa, bukan sekadar teks.
+                    Keingintahuan itulah yang menuntun saya untuk terus menggali
+                    sampai saya benar-benar memahami setiap bagian yang saya pakai.
+                  </p>
+                </article>
+
+                <article class="highlight-item">
+                  <h3 class="highlight-title">2. Begadang Demi Satu Fitur</h3>
+                  <p>
+                    Ada malam-malam ketika saya rela tidak tidur demi sebuah fitur.
+                    Bukan untuk pamer, tetapi untuk membuktikan pada diri sendiri
+                    bahwa saya bisa membawa ide menjadi nyata. Saya tekun memperbaiki
+                    bug, membaca dokumentasi, dan mencoba ulang sampai logika itu
+                    bekerja.
+                  </p>
+                  <p>
+                    Proses itu membentuk sikap saya. Saya belajar bahwa kerja keras
+                    bukan soal kuantitas, melainkan ketajaman. Satu fitur yang selesai
+                    dengan pemahaman lebih dalam jauh lebih berharga daripada banyak
+                    fitur yang hanya setengah jadi.
+                  </p>
+                </article>
+
+                <article class="highlight-item">
+                  <h3 class="highlight-title">3. AI Sebagai Cermin</h3>
+                  <p>
+                    Saat saya mulai memakai AI, ada suara ragu yang berkata: apakah
+                    ini benar-benar saya? Namun saya segera menyadari bahwa AI tidak
+                    boleh hanya menjadi mesin penulis kode.
+                  </p>
+                  <p>
+                    Saya mulai memintanya menjelaskan alasan di balik solusinya.
+                    Dengan begitu, percakapan dengan AI berubah menjadi proses belajar
+                    yang nyata. Inilah filosofi saya: AI boleh membantu, tetapi saya
+                    yang harus tetap memahami dan memilih.
+                  </p>
+                </article>
+
+                <article class="highlight-item">
+                  <h3 class="highlight-title">4. Logika Terlebih Dahulu</h3>
+                  <p>
+                    Saya sering lihat orang terjebak dalam tampilan sebelum struktur
+                    aplikasi matang. Saya juga pernah begitu. Kini saya percaya bahwa
+                    kerangka aplikasi adalah fondasi yang paling penting.
+                  </p>
+                  <p>
+                    Ketika struktur sudah kuat, UI akan mengikuti dengan lebih mudah.
+                    Menyelesaikan logika lebih dulu membantu saya bekerja lebih fokus
+                    dan tidak mudah terganggu oleh detail estetika yang belum
+                    seharusnya diprioritaskan.
+                  </p>
+                </article>
+
+                <article class="highlight-item">
+                  <h3 class="highlight-title">5. Berhenti Bukan Tanda Menyerah</h3>
+                  <p>
+                    Pernah ketika saya stuck total dengan bug yang tampak tak wajar.
+                    Alih-alih memaksa, saya memilih bangkit dan keluar sejenak. Saya
+                    membeli kopi, berjalan, lalu kembali dengan kepala lebih jernih.
+                  </p>
+                  <p>
+                    Di momen itulah saya sadar bahwa istirahat adalah strategi. Bukan
+                    karena malas, melainkan karena memberi ruang pada otak untuk
+                    melihat ulang masalah dari sisi lain.
+                  </p>
+                </article>
+
+                <article class="highlight-item">
+                  <h3 class="highlight-title">6. Konsistensi adalah Jalan Panjang</h3>
+                  <p>
+                    Saya belajar bahwa maraton lebih penting daripada sprint. Kerja
+                    keras dalam satu hari tidak menjamin hasil bertahan lama.
+                    Konsistensi setiap hari, sekecil apapun, adalah yang membawa saya
+                    lebih dekat ke tujuan.
+                  </p>
+                  <p>
+                    Itulah yang membuat saya optimis. Bukan karena saya selalu cepat,
+                    tetapi karena saya terus melangkah. Proses kecil itu akhirnya
+                    membentuk cerita besar yang ingin saya bagi di halaman ini.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Stats Section -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Proyek</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Semangat</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Skill</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Dedikasi</div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="kaki-strip wadah" role="contentinfo">
+      <div class="footer-top">
+        <div class="footer-copy">
+          © <span class="footer-year hl"></span> TKJ XI-9 · SMK Muhammadiyah
+          Belitang
+        </div>
+        <div class="footer-links">
+          <a href="../index.html">Beranda</a>
+          <a href="structure.html">Struktur</a>
+        </div>
+      </div>
+      <div class="sosial-kaki" aria-label="Sosial media kami"></div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Kembali ke atas">
+      <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Logo Lightbox -->
+    <div
+      id="logo-jendela"
+      class="logo-jendela"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Logo TKJ XI-9 diperbesar"
+    >
+      <button
+        class="tutup-logo-jendela"
+        id="tutup-logo-jendela"
+        aria-label="Tutup logo"
+      >
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+      <img
+        id="gambar-logo-jendela"
+        src="../assets/logo/logo-utama.svg"
+        alt="Logo TKJ XI-9"
+      />
+    </div>
+
+    <!-- Photo Lightbox -->
+    <div
+      id="photo-lightbox"
+      class="photo-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Foto diperbesar"
+    >
+      <button
+        class="photo-lightbox-close"
+        id="photo-lightbox-close"
+        aria-label="Tutup foto"
+      >
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+      <img id="photo-lightbox-img" src="" alt="" />
+    </div>
+
+    <script src="../settings.js"></script>
+    <script>
+      /* ============================================
+         DEVELOPER PAGE — ENHANCED INTERACTIVITY
+         ============================================ */
+
+      // Content database - PAGE METADATA
+      const developerContent = {
+        pageDescription:
+          "Perjalanan dari menganggap kode sebagai teks acak menjadi passion sejati. Dimulai dari WhatsApp Bot Baileys, lalu berkembang ke pengembangan project modular dan filosofi belajar AI yang tepat.",
+        waliKelas: "Drs. Bambang Sutrisno, M.Pd",
+      };
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add loading state
+        document.body.style.opacity = "0";
+
+        // Load content
+        loadDeveloperContent();
+
+        // Setup tabs
+        setupTabsNavigation();
+
+        // Setup keyboard navigation
+        setupKeyboardNavigation();
+
+        // Setup intersection observer for animations
+        setupIntersectionObserver();
+
+        // Setup photo lightbox
+        setupPhotoLightbox();
+
+        // Fade in page
+        setTimeout(() => {
+          document.body.style.transition = "opacity 0.6s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+
+        // Add smooth link navigation
+        addSmoothLinkNavigation();
+      });
+
+      function loadDeveloperContent() {
+        const waliName = document.querySelector(".wali-name");
+        if (waliName) waliName.textContent = developerContent.waliKelas;
+
+        const kelasDesc = document.getElementById("kelas-desc");
+        if (kelasDesc) {
+          kelasDesc.textContent = developerContent.pageDescription;
+        }
+
+        const footerYear = document.querySelector(".footer-year");
+        if (footerYear) {
+          footerYear.textContent = new Date().getFullYear();
+        }
+      }
+
+      function setupTabsNavigation() {
+        const tabs = document.querySelectorAll(".dev-tab");
+        const contentItems = document.querySelectorAll(".dev-content-item");
+
+        tabs.forEach((tab, index) => {
+          tab.setAttribute("role", "tab");
+          tab.setAttribute("aria-selected", index === 0);
+          tab.setAttribute("tabindex", index === 0 ? 0 : -1);
+
+          tab.addEventListener("click", function () {
+            switchTab(this, tabs, contentItems);
+          });
+        });
+      }
+
+      function switchTab(clickedTab, tabs, contentItems) {
+        const tabName = clickedTab.getAttribute("data-tab");
+
+        // Update tab states
+        tabs.forEach((tab) => {
+          const isActive = tab === clickedTab;
+          tab.classList.toggle("active", isActive);
+          tab.setAttribute("aria-selected", isActive);
+          tab.setAttribute("tabindex", isActive ? 0 : -1);
+        });
+
+        // Update content states - hide all first
+        contentItems.forEach((item) => {
+          item.classList.remove("active");
+          item.setAttribute("aria-hidden", "true");
+        });
+
+        // Show selected content
+        const activeContent = document.querySelector(
+          `[data-content="${tabName}"]`,
+        );
+        if (activeContent) {
+          activeContent.classList.add("active");
+          activeContent.setAttribute("aria-hidden", "false");
+          // Trigger reflow to ensure animation
+          activeContent.offsetHeight;
+        }
+      }
+
+      function setupKeyboardNavigation() {
+        const tabs = document.querySelectorAll(".dev-tab");
+        const contentItems = document.querySelectorAll(".dev-content-item");
+
+        document.addEventListener("keydown", (e) => {
+          const activeTab = document.querySelector(".dev-tab.active");
+          if (!activeTab || !e.target.classList.contains("dev-tab")) return;
+
+          let nextTab = null;
+
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            const index = Array.from(tabs).indexOf(activeTab);
+            nextTab = tabs[(index + 1) % tabs.length];
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            const index = Array.from(tabs).indexOf(activeTab);
+            nextTab = tabs[(index - 1 + tabs.length) % tabs.length];
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            nextTab = tabs[0];
+          } else if (e.key === "End") {
+            e.preventDefault();
+            nextTab = tabs[tabs.length - 1];
+          }
+
+          if (nextTab) {
+            switchTab(nextTab, tabs, contentItems);
+            nextTab.focus();
+          }
+        });
+      }
+
+      function setupIntersectionObserver() {
+        const options = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animation =
+                "slide-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
+              observer.unobserve(entry.target);
+            }
+          });
+        }, options);
+
+        document
+          .querySelectorAll(".dev-content-item.active")
+          .forEach((item) => {
+            observer.observe(item);
+          });
+
+        // Animate stats
+        animateStats();
+      }
+
+      function animateStats() {
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = "true";
+                const statNumbers =
+                  entry.target.querySelectorAll(".stat-number");
+                statNumbers.forEach((stat) => {
+                  const text = stat.textContent;
+                  const number = parseInt(text);
+                  if (!isNaN(number)) {
+                    animateCounter(stat, number);
+                  }
+                });
+              }
+            });
+          },
+          { threshold: 0.3 },
+        );
+
+        document.querySelectorAll(".stats-grid").forEach((grid) => {
+          statsObserver.observe(grid);
+        });
+      }
+
+      function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 30;
+        const originalText = element.textContent;
+
+        const interval = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = originalText;
+            clearInterval(interval);
+          } else {
+            const prefix = originalText.replace(/\d+/g, "");
+            element.textContent = Math.floor(current) + prefix;
+          }
+        }, 30);
+      }
+
+      function addSmoothLinkNavigation() {
+        document.querySelectorAll("a[href^='../']").forEach((link) => {
+          link.addEventListener("click", (e) => {
+            if (link.target === "" || link.target === "_self") {
+              e.preventDefault();
+              const href = link.getAttribute("href");
+              document.body.style.opacity = "0";
+              document.body.style.transition = "opacity 0.3s ease";
+              setTimeout(() => {
+                window.location.href = href;
+              }, 300);
+            }
+          });
+        });
+      }
+
+      function setupPhotoLightbox() {
+        const lightbox = document.getElementById("photo-lightbox");
+        const lightboxImg = document.getElementById("photo-lightbox-img");
+        const lightboxClose = document.getElementById("photo-lightbox-close");
+
+        document.addEventListener("click", (e) => {
+          if (e.target.closest(".article-photo img")) {
+            const img = e.target;
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
+
+        lightboxClose.addEventListener("click", () => {
+          lightbox.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && lightbox.classList.contains("active")) {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      }
+
+      // Perfom performance monitoring
+      if ("PerformanceObserver" in window) {
+        try {
+          const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              if (entry.name.includes("developer")) {
+                console.log(`${entry.name}: ${entry.duration.toFixed(2)}ms`);
+              }
+            }
+          });
+          observer.observe({ entryTypes: ["measure", "navigation"] });
+        } catch (e) {
+          console.log("Performance monitoring not available");
+        }
+      }
+    </script>
+    <script src="../index.js"></script>
+  </body>
+</html>

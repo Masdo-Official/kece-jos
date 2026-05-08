@@ -61,7 +61,7 @@
       }
       out[k] = node;
     }
-    out.kartu = document.querySelector("kartu");
+    out.kartu = document.querySelector(".kartu");
     return out;
   }
 
@@ -121,10 +121,10 @@
         ),
       );
       if (!f.length) return;
-      if (e.shiftKey && document.aktifElement === f[0]) {
+      if (e.shiftKey && document.activeElement === f[0]) {
         e.preventDefault();
         f[f.length - 1].focus();
-      } else if (!e.shiftKey && document.aktifElement === f[f.length - 1]) {
+      } else if (!e.shiftKey && document.activeElement === f[f.length - 1]) {
         e.preventDefault();
         f[0].focus();
       }
@@ -234,7 +234,7 @@
   }
 
   function updateBtn(tombol, sedangBermain) {
-    const label = tombol.querySelector("musik-label");
+    const label = tombol.querySelector(".musik-label");
     if (label) label.textContent = sedangBermain ? "Pause Musik" : "Play Musik";
     tombol.classList.toggle("sedang-bermain", sedangBermain);
     tombol.setAttribute(
@@ -344,7 +344,7 @@
     const chars = Array.from(CONFIG.pesanTypewriter);
     let i = 0;
     pesanType.innerHTML = '<span class="tw-cursor" aria-hidden="true"></span>';
-    const cursor = pesanType.querySelector("tw-cursor");
+    const cursor = pesanType.querySelector(".tw-cursor");
 
     const iv = setInterval(function () {
       if (i >= chars.length) {
